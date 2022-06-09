@@ -28,7 +28,7 @@ Config = {
 Config.UnitPrice    = 200000                            ---Price of the units to buy
 Config.SellPrice    = 150000                            ---Price of the unit when sold 
 Config.RentPrice    = 10000
-Config.Notify 		= 'okok'							--- 'okok' for okokNotify(paid), 'swt' for swt_notifications(free), 'esx' Default esx notify, 'custom' if custom is selected you must go through client and server lua to add the trigger 
+Config.Notify 		= 'ox_lib'							--- 'okok' for okokNotify(paid), 'swt' for swt_notifications(free), 'esx' Default esx notify, 'ox_lib' for ox_lib, and 'custom' if custom is selected you must go through client and server lua to add the trigger 
 
 --NPC Config Options
 Config.npcCoords	= vector3(-79.36, -1197.16, 26.6)	--- coordinates of the NPC

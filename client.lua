@@ -199,6 +199,14 @@ AddEventHandler('koe_storageunitsv2:buyStorage', function(data)
 
             TriggerServerEvent('koe_storageunitsv2:buyUnit', storageID, pin)
             TriggerServerEvent('koe_storageunitsv2:addTimeToDb', storageID)
+            if Config.Notify == 'ox_lib' then
+                lib.notify({
+                    title = 'Storage Unit',
+                    description = 'Unit Purchased',
+                    type = 'success',
+                    duration = 8000,
+                    position = 'top',
+                   })
             if Config.Notify == 'swt' then
                 exports['swt_notifications']:Success('success','Unit purchased!','top',8000,true)
             end
@@ -213,6 +221,14 @@ AddEventHandler('koe_storageunitsv2:buyStorage', function(data)
             end
         end
     else
+        if Config.Notify == 'ox_lib' then
+            lib.notify({
+                title = 'Storage Unit',
+                description = 'Not enough money',
+                type = 'error',
+                duration = 8000,
+                position = 'top',
+               })
         if Config.Notify == 'swt' then
             exports['swt_notifications']:Negative('error','Not enough money','top',8000,true)
         end
@@ -243,6 +259,14 @@ AddEventHandler('koe_storageunitsv2:changePin', function(data)
 
     if keyboard2[1] ~= nil then
         TriggerServerEvent('koe_storageunitsv2:pinChange', storageID,keyboard2[1])
+        if Config.Notify == 'ox_lib' then
+            lib.notify({
+                title = 'Storage Unit',
+                description = 'Your pin was changed',
+                type = 'success',
+                duration = 8000,
+                position = 'top',
+               })
         if Config.Notify == 'swt' then
             exports['swt_notifications']:Success('success','Your pin was changed!','top',8000,true)
         end
@@ -258,6 +282,14 @@ AddEventHandler('koe_storageunitsv2:changePin', function(data)
           
     end
         else
+            if Config.Notify == 'ox_lib' then
+                lib.notify({
+                    title = 'Storage Unit',
+                    description = 'You have entered the wrong pin.',
+                    type = 'error',
+                    duration = 8000,
+                    position = 'top',
+                   })
             if Config.Notify == 'swt' then
 		        exports['swt_notifications']:Negative('error','You have entered the wrong pin. ','top',8000,true)
             end
@@ -373,6 +405,14 @@ AddEventHandler('koe_storageunitsv2:registerStash', function(data)
         if pin then
            TriggerServerEvent('koe_storageunitsv2:registerStash', storageID)
         else
+            if Config.Notify == 'ox_lib' then
+                lib.notify({
+                    title = 'Storage Unit',
+                    description = 'You have entered the wrong pin',
+                    type = 'error',
+                    duration = 8000,
+                    position = 'top',
+                   })
             if Config.Notify == 'swt' then
 		        exports['swt_notifications']:Negative('error','You have entered the wrong pin.','top',8000,true)
             end
@@ -426,6 +466,14 @@ end)
 RegisterNetEvent('koe_storageunitsv2:storageSell')
 AddEventHandler('koe_storageunitsv2:storageSell', function()
     TriggerServerEvent('koe_storageunitsv2:sellUnit', storageID)
+    if Config.Notify == 'ox_lib' then
+        lib.notify({
+            title = 'Storage Unit',
+            description = 'You have sold the unit!',
+            type = 'success',
+            duration = 8000,
+            position = 'top',
+           })
     if Config.Notify == 'swt' then
         exports['swt_notifications']:Success('success','You sold the unit!','top',8000,true)
     end
@@ -469,6 +517,14 @@ AddEventHandler('koe_storageunitsv2:policeBreach', function(storageID)
     end  
     for k, v in pairs(Config.Policeraid.Jobs) do
         if v.job == ESX.PlayerData.job.name and ESX.PlayerData.job.grade < v.grade then
+            if Config.Notify == 'ox_lib' then
+                lib.notify({
+                    title = 'Storage Unit',
+                    description = 'Not a high enough rank to do that.',
+                    type = 'error',
+                    duration = 8000,
+                    position = 'top',
+                   })
             if Config.Notify == 'swt' then 
                 exports['swt_notifications']:Negative('error','Not a high enough rank to do that.','top',8000,true)
             end
@@ -484,6 +540,14 @@ AddEventHandler('koe_storageunitsv2:policeBreach', function(storageID)
         end
     end 
     if ESX.PlayerData.job.name ~= 'police' then
+        if Config.Notify == 'ox_lib' then
+            lib.notify({
+                title = 'Storage Unit',
+                description = 'You are not a cop. You cannot do that.',
+                type = 'error',
+                duration = 8000,
+                position = 'top',
+               })
         if Config.Notify == 'swt' then
             exports['swt_notifications']:Negative('error','You cant do that, youre not a cop.','top',8000,true)
         end
