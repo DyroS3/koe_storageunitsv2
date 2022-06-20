@@ -247,7 +247,7 @@ AddEventHandler('koe_storageunitsv2:registerStash', function(storageID)
     }, 
     function(result3)
         stashID = json.encode(result3)
-        exports.ox_inventory:RegisterStash(stashID, "Storage Unit", 70, 300000)
+        exports.ox_inventory:RegisterStash(stashID, "Storage Unit", 25, 300000)
         TriggerClientEvent('koe_storageunitsv2:openStash', src, stashID)
     end)
 end)
