@@ -115,14 +115,15 @@ AddEventHandler('koe_storageunitsv2:addRentBalance', function(rent, balance, sto
 
         if Config.Notify == 'ox_lib' then
             TriggerClientEvent('ox_lib:notify', source, {type = 'success', description = "You've added some money to your rent balance", duration = 8000, position = 'top'})
+        end
         if Config.Notify == 'swt' then
-            TriggerClientEvent("swt_notifications:default",src,'You've added some money to your rent balance','top',8000)
+            TriggerClientEvent("swt_notifications:default",src,'Youve added some money to your rent balance','top',8000)
         end
         if Config.Notify == 'okok' then
             TriggerClientEvent('okokNotify:Alert', src, "Storage Units", "You've added some money to your rent balance", 8000, 'success')
         end
         if Config.Notify == 'esx' then
-            TriggerClientEvent('esx:showNotification', src, 'You've added some money to your rent balance')
+            TriggerClientEvent('esx:showNotification', src, 'Youve added some money to your rent balance')
         end
         if Config.Notify == 'custom' then
             --Enter custom code here
@@ -132,6 +133,7 @@ AddEventHandler('koe_storageunitsv2:addRentBalance', function(rent, balance, sto
     else
       if Config.Notify == 'ox_lib' then
         TriggerClientEvent('ox_lib:notify', source, {type = 'error', description = "Not enough cash", duration = 8000, position = 'top'})
+      end
       if Config.Notify == 'swt' then
         TriggerClientEvent("swt_notifications:default",src,'Not enough cash','top',8000)
       end
@@ -160,6 +162,7 @@ AddEventHandler('koe_storageunitsv2:removeRentBalance', function(amount, balance
 
         if Config.Notify == 'ox_lib' then
           TriggerClientEvent('ox_lib:notify', source, {type = 'success', description = "You took out $", duration = 8000, position = 'top'})
+        end
         if Config.Notify == 'swt' then
             TriggerClientEvent("swt_notifications:default",src,'you took out $' ..amount,'top',8000)
         end
@@ -177,6 +180,7 @@ AddEventHandler('koe_storageunitsv2:removeRentBalance', function(amount, balance
     else
       if Config.Notify == 'ox_lib' then
         TriggerClientEvent('ox_lib:notify', source, {type = 'error', description = "Not enough in account.", duration = 8000, position = 'top'})
+      end
       if Config.Notify == 'swt' then
         TriggerClientEvent("swt_notifications:default",src,'Not enough in account','top',8000)
       end
@@ -247,7 +251,7 @@ AddEventHandler('koe_storageunitsv2:registerStash', function(storageID)
     }, 
     function(result3)
         stashID = json.encode(result3)
-        exports.ox_inventory:RegisterStash(stashID, "Storage Unit", 25, 300000)
+        exports.ox_inventory:RegisterStash(stashID, "Storage Unit", Config.Slots, Config.Weight)
         TriggerClientEvent('koe_storageunitsv2:openStash', src, stashID)
     end)
 end)

@@ -29,11 +29,8 @@ Config.UnitPrice    = 200000                            ---Price of the units to
 Config.SellPrice    = 150000                            ---Price of the unit when sold 
 Config.RentPrice    = 10000
 Config.Notify 		= 'ox_lib'							--- 'okok' for okokNotify(paid), 'swt' for swt_notifications(free), 'esx' Default esx notify, 'ox_lib' for ox_lib, and 'custom' if custom is selected you must go through client and server lua to add the trigger 
-
---NPC Config Options
-Config.npcCoords	= vector3(-79.36, -1197.16, 26.6)	--- coordinates of the NPC
-Config.npcHeading = 181.76							--- heading(direction) of the NPC
-Config.npcModel		= 'a_m_m_business_01'
+Config.Slots 		= 25								---ONLY IF USING OX_INVENTORY
+Config.Weight		= 100000							---ONLY IF USING OX_INVENTORY
 
 
 
