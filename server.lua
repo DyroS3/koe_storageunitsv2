@@ -95,12 +95,13 @@ function(result)
 end)
 
 RegisterNetEvent('koe_storageunitsv2:pinChange')
-AddEventHandler('koe_storageunitsv2:pinChange', function(storageID,balance)
+AddEventHandler('koe_storageunitsv2:pinChange', function(storageID, newpin)
     local src = source
     local xPlayer = ESX.GetPlayerFromId(src)
     local identifier =  ESX.GetPlayerFromId(src).identifier
-               MySQL.Async.fetchAll("UPDATE storageunits SET pin = @pin WHERE id =@id",{['@pin']  = pin, ['@id'] = storageID}, function(result)
-            end)
+
+      MySQL.Async.fetchAll("UPDATE storageunits SET pin = @pin WHERE id =@id",{['@pin']  = newpin, ['@id'] = storageID}, function(result)
+      end)
 end)
 
 RegisterNetEvent('koe_storageunitsv2:addRentBalance')

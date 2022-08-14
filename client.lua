@@ -181,15 +181,22 @@ AddEventHandler('koe_storageunitsv2:changePin', function(data)
     local keyboard = lib.inputDialog('Enter your current PIN', {
         { type = "input", label = "Unit PIN", password = true, icon = 'lock' },
     })
-    if keyboard[1] ~= nil then
-           ESX.TriggerServerCallback('koe_storageunitsv2:checkPin', function(pin)
-        if pin then
+    
+    if keyboard then
+        local oldpin = tonumber(keyboard[1])
+            ESX.TriggerServerCallback('koe_storageunitsv2:checkPin', function(oldpin)
+    
+            if oldpin then
             local keyboard2 = lib.inputDialog('Enter a NEW PIN', {
                 { type = "input", label = "NEW PIN", password = true, icon = 'lock' },
             })
 
-    if keyboard2[1] ~= nil then
-        TriggerServerEvent('koe_storageunitsv2:pinChange', storageID,keyboard2[1])
+
+    if keyboard2 then
+        local newpin = tonumber(keyboard2[1])
+        print(newpin)
+        TriggerServerEvent('koe_storageunitsv2:pinChange', storageID,newpin)
+
         if Config.Notify == 'ox_lib' then
             lib.notify({
                 title = 'Storage Unit',
@@ -329,11 +336,11 @@ end)
 
 RegisterNetEvent('koe_storageunitsv2:registerStash')
 AddEventHandler('koe_storageunitsv2:registerStash', function(data)
-    local keyboard = lib.inputDialog('Enter your current PIN', {
+    local keyboard2 = lib.inputDialog('Enter your current PIN', {
         { type = "input", label = "Unit PIN", password = true, icon = 'lock' },
     })
 
-    if keyboard[1] ~= nil then
+    if keyboard2[1] ~= nil then
            ESX.TriggerServerCallback('koe_storageunitsv2:checkPin', function(pin)
         if pin then
            TriggerServerEvent('koe_storageunitsv2:registerStash', storageID)
@@ -360,7 +367,7 @@ AddEventHandler('koe_storageunitsv2:registerStash', function(data)
                 --Enter custom code here
             end
         end
-    end, storageID,keyboard[1])
+    end, storageID,keyboard2[1])
     end
 end)
 
