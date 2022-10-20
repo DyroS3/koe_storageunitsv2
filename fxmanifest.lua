@@ -16,4 +16,11 @@ client_scripts {
 	'config.lua'
  }
 
+ escrow_ignore {
+	'client.lua',
+	'config.lua',
+	'server.lua',
+  }
+
  shared_script '@ox_lib/init.lua'
+ shared_script '@es_extended/imports.lua'

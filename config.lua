@@ -67,6 +67,20 @@ Config.Storages = {
 	--3030 is the postal if you use postals map
 	{ name = 'storageunit27', id = 27, coords = vector3(913.98, 3562.73, 33.8), bt_length = 2, bt_width = 4.4, bt_minZ = 31.58, bt_maxZ = 35.58, bt_heading = 269 },
 	{ name = 'storageunit28', id = 28, coords = vector3(913.99, 3567.38, 33.78), bt_length = 2, bt_width = 4.4, bt_minZ = 31.58, bt_maxZ = 35.58, bt_heading = 269 },
+	--8218 is the postal if you use postals map
+	{ name = 'storageunit29', id = 29, coords = vector3(-1203.82, -1311.17, 4.86), bt_length = 3.4, bt_width = 1, bt_minZ = 3.86, bt_maxZ = 6.26, bt_heading = 295 },
+	{ name = 'storageunit30', id = 30, coords = vector3(-1207.98, -1313.14, 4.76), bt_length = 3.4, bt_width = 1, bt_minZ = 3.76, bt_maxZ = 6.16, bt_heading = 295 },
+	{ name = 'storageunit31', id = 31, coords = vector3(-1212.37, -1315.15, 4.68), bt_length = 3.4, bt_width = 1, bt_minZ = 3.68, bt_maxZ = 6.08, bt_heading = 295 },
+	--10032 is the postal if you use postals map
+	{ name = 'storageunit32', id = 32, coords = vector3(-1135.46, -1962.32, 13.16), bt_length = 1.8, bt_width = 1, bt_minZ = 12.16, bt_maxZ = 14.76, bt_heading = 270 },
+	{ name = 'storageunit33', id = 33, coords = vector3(-1128.81, -1962.43, 13.16), bt_length = 1.8, bt_width = 1, bt_minZ = 12.16, bt_maxZ = 14.76, bt_heading = 270 },
+	{ name = 'storageunit34', id = 34, coords = vector3(-1120.23, -1962.43, 13.16), bt_length = 1.8, bt_width = 1, bt_minZ = 12.16, bt_maxZ = 14.76, bt_heading = 270 },
+	{ name = 'storageunit35', id = 35, coords = vector3(-1113.57, -1962.44, 13.16), bt_length = 1.8, bt_width = 1, bt_minZ = 12.16, bt_maxZ = 14.76, bt_heading = 270 },
+	--6179 is the postal if you use postals map
+	{ name = 'storageunit37', id = 37, coords = vector3(-250.06, 306.28, 92.1), bt_length = 3.4, bt_width = 1, bt_minZ = 91.1, bt_maxZ = 94.5, bt_heading = 270 },
+	{ name = 'storageunit38', id = 38, coords = vector3(-246.2, 305.98, 92.09), bt_length = 3.4, bt_width = 1, bt_minZ = 91.09, bt_maxZ = 94.49, bt_heading = 270 },
+	{ name = 'storageunit39', id = 39, coords = vector3(-242.37, 306.25, 92.11), bt_length = 3.4, bt_width = 1, bt_minZ = 91.11, bt_maxZ = 94.51, bt_heading = 270 },
+	{ name = 'storageunit40', id = 40, coords = vector3(-238.58, 306.31, 92.12), bt_length = 3.4, bt_width = 1, bt_minZ = 91.12, bt_maxZ = 94.52, bt_heading = 270 },
 
 	
 }
