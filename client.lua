@@ -49,40 +49,72 @@ Citizen.CreateThread(function()
 	local heading = storageConfig[i].bt_heading or 0.0
 	local distance = storageConfig[i].bt_distance or 2.0
 	local storageid = storageConfig[i].id
-
-	exports['qtarget']:AddBoxZone(i .. storageName, storageConfig[i].coords, length, width, {
-		name=i .. storageName,
-		heading=heading,
-		debugPoly=false,
-		minZ=minZ,
-		maxZ=maxZ
-	}, {
-		options = {
-			{
-				event = "koe_storageunitsv2:checkOwned",
-				icon = "fas fa-warehouse",
-				label = "Open Storage Unit " .. storageid,
-				id = storageid,
-                canInteract = function()
-                    local player = PlayerPedId()
-                    return IsPedOnFoot(player)
-                end,
-			},
-            {
-				event = "koe_storageunitsv2:policeBreach",
-				icon = "fas fa-warehouse",
-				label = "Breach the unit",
-				id = storageid,
-                job = 'police', 
-                canInteract = function()
-                    local player = PlayerPedId()
-                    return IsPedOnFoot(player)
-                end,
+    
+    if Config.Target == 'ox_target' then
+        exports.ox_target:addBoxZone({
+            coords = storageConfig[i].coords,
+            size = vec3(length, width, 10),
+            rotation = heading,
+            options = {
+                {
+                    name = i .. storageName,
+                    event = "koe_storageunitsv2:checkOwned",
+                    icon = "fas fa-warehouse",
+                    label = "Open Storage Unit " .. storageid,
+                    id = storageid,
+                    canInteract = function(entity, distance, coords, name)
+                        return true
+                    end
+                },
+                {
+                    event = "koe_storageunitsv2:policeBreach",
+                    icon = "fas fa-warehouse",
+                    label = "Breach the unit",
+                    id = storageid,
+                    groups = 'police', 
+                    canInteract = function()
+                        local player = PlayerPedId()
+                        return IsPedOnFoot(player)
+                    end,
+                },
+            }
+        })
+    end
+    if Config.Target == 'qtarget' then
+        exports['qtarget']:AddBoxZone(i .. storageName, storageConfig[i].coords, length, width, {
+            name=i .. storageName,
+            heading=heading,
+            debugPoly=false,
+            minZ=minZ,
+            maxZ=maxZ
+        }, {
+            options = {
+                {
+                    event = "koe_storageunitsv2:checkOwned",
+                    icon = "fas fa-warehouse",
+                    label = "Open Storage Unit " .. storageid,
+                    id = storageid,
+                    canInteract = function()
+                        local player = PlayerPedId()
+                        return IsPedOnFoot(player)
+                    end,
+                },
+                {
+                    event = "koe_storageunitsv2:policeBreach",
+                    icon = "fas fa-warehouse",
+                    label = "Breach the unit",
+                    id = storageid,
+                    job = 'police', 
+                    canInteract = function()
+                        local player = PlayerPedId()
+                        return IsPedOnFoot(player)
+                    end,
+                },
             },
-		},
-		distance = 2.5
-	})
+            distance = 2.5
+        })
         end
+    end
 end)
    
 ---Checks the IDs above to then check the status of the storage youre interacting with

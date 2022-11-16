@@ -2,23 +2,23 @@ fx_version 'adamant'
 
 game 'gta5'
 
-version '1.0.0'
+version '1.0.1'
 lua54 'yes'
 
 client_scripts {
+	'config.lua',
 	'client.lua',
-	'config.lua'
  }
  
  server_scripts {
+	'config.lua',
 	'@mysql-async/lib/MySQL.lua',
 	'server.lua',
-	'config.lua'
  }
 
  escrow_ignore {
-	'client.lua',
 	'config.lua',
+	'client.lua',
 	'server.lua',
   }
 
