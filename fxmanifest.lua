@@ -23,4 +23,4 @@ client_scripts {
   }
 
  shared_script '@ox_lib/init.lua'
- shared_script '@es_extended/imports.lua'
+dependency '/assetpacks'

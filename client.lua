@@ -1,25 +1,40 @@
 ----Gets ESX-------------------------------------------------------------------------------------------------------------------------------
-ESX = exports["es_extended"]:getSharedObject()
-
-RegisterNetEvent('esx:playerLoaded')
-AddEventHandler('esx:playerLoaded', function(xPlayer)
-	ESX.PlayerData = xPlayer
-	PlayerLoaded = true
-end)
-
-RegisterNetEvent('esx:setJob')
-AddEventHandler('esx:setJob', function(job)
-	ESX.PlayerData.job = job
-end)
-
-AddEventHandler('esx:onPlayerSpawn', function()
-    local ped = PlayerPedId()
-end)
-
 storageID = nil
 rentBalance = nil
 local npcSpawned = false
 local npc
+
+ESX = nil
+
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(100)
+	end
+	PlayerLoaded = true
+	ESX.PlayerData = ESX.GetPlayerData()
+
+end)
+
+Citizen.CreateThread(function()
+	RegisterNetEvent('esx:playerLoaded')
+	AddEventHandler('esx:playerLoaded', function (xPlayer)
+		while ESX == nil do
+			Citizen.Wait(0)
+		end
+		ESX.PlayerData = xPlayer
+		PlayerLoaded = true
+	end)
+end) 
+
+RegisterNetEvent('esx:setJob')
+AddEventHandler('esx:setJob', function(job)
+	ESX.PlayerData.job = job
+
+end)
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -131,15 +146,6 @@ AddEventHandler('koe_storageunitsv2:buyStorage', function(data)
             if Config.Notify == 'esx' then
                 ESX.ShowNotification('Unit purchased!')
             end
-            if Config.Notify == 'ox' then
-                lib.notify({
-                    title = 'Storage Units',
-                    description = 'Unit purchased!',
-                    type = 'success',
-                    duration = 8000,
-                    position = 'top'
-                })
-            end
             if Config.Notify == 'custom' then
                 --Enter custom code here
             end
@@ -159,15 +165,6 @@ AddEventHandler('koe_storageunitsv2:buyStorage', function(data)
         end
         if Config.Notify == 'okok' then
             exports['okokNotify']:Alert("Storage Units", "Not enough money", 8000, 'error')
-        end
-        if Config.Notify == 'ox' then
-            lib.notify({
-                title = 'Storage Units',
-                description = 'Not enough money',
-                type = 'error',
-                duration = 8000,
-                position = 'top'
-            })
         end
         if Config.Notify == 'esx' then
             ESX.ShowNotification('Not enough money')
@@ -218,15 +215,6 @@ AddEventHandler('koe_storageunitsv2:changePin', function(data)
         if Config.Notify == 'esx' then
             ESX.ShowNotification('Your pin was changed!')
         end
-        if Config.Notify == 'ox' then
-            lib.notify({
-                title = 'Storage Units',
-                description = 'Your pin was changed!',
-                type = 'inform',
-                duration = 8000,
-                position = 'top'
-            })
-        end
         if Config.Notify == 'custom' then
             --Enter custom code here
         end
@@ -250,15 +238,6 @@ AddEventHandler('koe_storageunitsv2:changePin', function(data)
             end
             if Config.Notify == 'esx' then
                 ESX.ShowNotification('You have entered the wrong pin.')
-            end
-            if Config.Notify == 'ox' then
-                lib.notify({
-                    title = 'Storage Units',
-                    description = 'You have entered the wrong pin.',
-                    type = 'error',
-                    duration = 8000,
-                    position = 'top'
-                })
             end
             if Config.Notify == 'custom' then
                 --Enter custom code here
@@ -384,15 +363,6 @@ AddEventHandler('koe_storageunitsv2:registerStash', function(data)
             if Config.Notify == 'esx' then
                 ESX.ShowNotification('You have entered the wrong pin.')
             end
-            if Config.Notify == 'ox' then
-                lib.notify({
-                    title = 'Storage Units',
-                    description = 'You have entered the wrong pin.',
-                    type = 'error',
-                    duration = 8000,
-                    position = 'top'
-                })
-            end
             if Config.Notify == 'custom' then
                 --Enter custom code here
             end
@@ -455,15 +425,6 @@ AddEventHandler('koe_storageunitsv2:storageSell', function()
     if Config.Notify == 'esx' then
         ESX.ShowNotification('You sold the unit!')
     end
-    if Config.Notify == 'ox' then
-        lib.notify({
-            title = 'Storage Units',
-            description = 'You sold the unit!',
-            type = 'success',
-            duration = 8000,
-            position = 'top'
-        })
-    end
     if Config.Notify == 'custom' then
         --Enter custom code here
     end
@@ -517,15 +478,6 @@ AddEventHandler('koe_storageunitsv2:policeBreach', function(storageID)
             if Config.Notify == 'esx' then
                 ESX.ShowNotification('Not a high enough rank to do that.')
             end
-            if Config.Notify == 'ox' then
-                lib.notify({
-                    title = 'Storage Units',
-                    description = 'Not a high enough rank to do that!',
-                    type = 'error',
-                    duration = 8000,
-                    position = 'top'
-                })
-            end
             if Config.Notify == 'custom' then
                 --Enter custom code here
             end
@@ -549,15 +501,6 @@ AddEventHandler('koe_storageunitsv2:policeBreach', function(storageID)
         end
         if Config.Notify == 'esx' then
             ESX.ShowNotification('You cant do that, youre not a cop.')
-        end
-        if Config.Notify == 'ox' then
-            lib.notify({
-                title = 'Storage Units',
-                description = 'You cant do that, youre not a cop!',
-                type = 'error',
-                duration = 8000,
-                position = 'top'
-            })
         end
         if Config.Notify == 'custom' then
             --Enter custom code here
