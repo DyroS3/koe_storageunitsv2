@@ -25,7 +25,7 @@ Config = {
 }
 
 --General Options
-Config.Target		= 'qtarget'							-- 'ox_target' for Ox Target | 'qtarget' for qtarget
+Config.Target		= 'ox_target'							-- 'ox_target' for Ox Target | 'qtarget' for qtarget
 
 Config.UnitPrice    = 35000                            ---Price of the units to buy
 Config.SellPrice    = 20000                            ---Price of the unit when sold 
